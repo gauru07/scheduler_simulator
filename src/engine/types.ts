@@ -4,7 +4,8 @@ export type Algorithm =
   | 'SRTF_PREEMPTIVE'
   | 'PRIORITY_NON_PREEMPTIVE'
   | 'PRIORITY_PREEMPTIVE'
-  | 'ROUND_ROBIN';
+  | 'ROUND_ROBIN'
+  | 'MLFQ';
 
 export interface ProcessInput {
   id: string;
@@ -13,12 +14,20 @@ export interface ProcessInput {
   priority?: number;
 }
 
+export interface MLFQLevel {
+  quantum: number;
+  algorithm: 'FCFS' | 'ROUND_ROBIN';
+}
+
 export interface SimulationRequest {
   algorithm: Algorithm;
   processes: ProcessInput[];
   quantum?: number;
   contextSwitchCost?: number;
   priorityLowerIsHigher?: boolean;
+  // MLFQ specific
+  mlfqLevels?: MLFQLevel[];
+  boostInterval?: number; // Time after which all processes move to highest priority
 }
 
 export interface GanttSlice {

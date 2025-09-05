@@ -1,4 +1,4 @@
-import { GanttSlice, ProcessInput, ProcessResult, SimulationRequest, SimulationResponse } from '../types';
+import { GanttSlice, ProcessResult, SimulationRequest, SimulationResponse } from '../types';
 import { finalize } from '../finalize';
 
 export function fcfs(req: SimulationRequest): SimulationResponse {

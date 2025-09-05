@@ -15,10 +15,13 @@ function getErrorMessage(err: unknown): string {
 export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
+    console.log('API: Received request:', body);
     const result = runSimulation(body);
+    console.log('API: Returning result:', result);
     return NextResponse.json(result);
   } catch (e: unknown) {
     const message = getErrorMessage(e);
+    console.log('API: Error:', message);
     return NextResponse.json(
       { error: { code: 'BAD_REQUEST', message } },
       { status: 400 }
